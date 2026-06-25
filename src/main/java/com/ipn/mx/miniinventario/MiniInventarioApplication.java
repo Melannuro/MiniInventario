@@ -18,15 +18,5 @@ public class MiniInventarioApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        IO.println("Categoria");
-//        Categoria categoria = new Categoria();
-        //categoria.setIdCategoria(2L);
-        //categoria.setNombreCategoria("Electronica");
-        //categoria.setDescripcionCategoria("Articulos de electronica");
-
-        //dao.save(categoria);
-        //dao.deleteById(categoria.getIdCategoria());
-        //IO.println(dao.findById(3L));
-        IO.println("Estoy Trabajando...");
     }
 }
