@@ -5,6 +5,7 @@ import com.ipn.mx.miniinventario.features.Archivo.repository.ArchivoRepository;
 import com.ipn.mx.miniinventario.features.Archivo.service.ArchivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,6 +17,7 @@ public class ArchivoServiceImpl implements ArchivoService {
     @Autowired
     private ArchivoRepository repository;
     @Override
+    @Transactional
     public Archivo guardarArchivoEnBaseDeDatos(MultipartFile archivo) throws IOException {
         String nombreArchivo = StringUtils.cleanPath(
                 archivo.getOriginalFilename()
@@ -29,6 +31,7 @@ public class ArchivoServiceImpl implements ArchivoService {
     }
 
     @Override
+    @Transactional
     public Optional<Archivo> descargarArchivo(Long id) throws FileNotFoundException {
         Optional<Archivo> archivo = repository.findById(id);
         if (archivo.isPresent()){

@@ -24,10 +24,6 @@ public class ProductoController {
     @GetMapping("/producto")
     @ResponseStatus(HttpStatus.OK)
     public List<Producto> findAll(){
-        emailService.enviarCorreoElectronico(
-                "melanie.acbe@gmail.com", "Jajajja Ahuevo que pedo pinche mmd toca rara",
-                "En mis tiempos esa wea era bn complicada puto Kike t voi a odiar hasta la muerte, viva zarate"
-        );
         return productoService.findAll();
     }
 

@@ -3,6 +3,7 @@ package com.ipn.mx.miniinventario.features.mail.service.Impl;
 import com.ipn.mx.miniinventario.features.mail.service.EmailService;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
     @Autowired
     private JavaMailSender mailSender;
+
+    @Value("${spring.mail.username}")
+    private String mailCc;
 
     @Override
     public void enviarCorreoElectronico(String to, String subject, String text) {
@@ -22,8 +26,7 @@ public class EmailServiceImpl implements EmailService {
             helper.setSubject(subject);
             helper.setText(text, true);
             helper.setTo(to);
-            helper.setCc("rebolledo.dominguez.arturo@gmail.com");
-            helper.setBcc("arturorebolledodom@gmail.com");
+            helper.setCc(mailCc);
 
             mailSender.send(mensaje);
         }catch (Exception ex){

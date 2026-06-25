@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.type.descriptor.jdbc.VarbinaryJdbcType;
 
 import java.io.Serializable;
 @Data
@@ -21,8 +23,8 @@ public class Archivo implements Serializable {
     private String nombreArchivo;
 
     private String tipoArchivo;
-
-    @Lob
-    @Column(length = 16000000)
+    
+    @JdbcType(VarbinaryJdbcType.class)
+    @Column(name = "datos_archivo", columnDefinition = "bytea")
     private byte[] datosArchivo;
 }

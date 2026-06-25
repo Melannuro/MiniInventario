@@ -5,6 +5,7 @@ import com.ipn.mx.miniinventario.features.Archivo.DTOs.RespuestaDTO;
 import com.ipn.mx.miniinventario.features.Archivo.service.ArchivoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,10 @@ import java.io.IOException;
 public class ArchivoController {
     @Autowired
     private ArchivoService service;
-
-    @PostMapping("/subirArchivo")
+    @PostMapping(value = "/subirArchivo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<RespuestaDTO> subirArchivo(@RequestParam MultipartFile archivo)
         throws IOException{
+
         service.guardarArchivoEnBaseDeDatos(archivo);
         RespuestaDTO respuestaDTO = new RespuestaDTO();
         respuestaDTO.setMensaje("Archivo Guardado Correctamente");
